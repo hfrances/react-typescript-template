@@ -1,10 +1,10 @@
-import RootPage from '../root';
+import  { MainFrame }  from '../../components';
 import logo from '../../assets/logo.svg';
 
 const HomePage = (): JSX.Element => {
 
   return (
-    <RootPage headerTitle="home" footerVisible={true}>
+    <MainFrame headerTitle="home" footerVisible={true}>
       <img src={logo} className="App-logo" alt="logo" />
       <p>
         Edit <code>src/App.tsx</code> and save to reload.
@@ -17,7 +17,7 @@ const HomePage = (): JSX.Element => {
       >
         Learn React
         </a>
-    </RootPage>
+    </MainFrame>
   );
 };
 

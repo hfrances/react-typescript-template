@@ -2,12 +2,12 @@ import { FunctionComponent, Fragment } from 'react';
 import Header from './header';
 import Footer from './footer';
 
-type RootPageProps = {
+type MainFrameProps = {
   headerTitle: string,
   footerVisible: boolean
 }
 
-const RootPage: FunctionComponent<RootPageProps> = ({ headerTitle, footerVisible, children }) => {
+const MainFrame: FunctionComponent<MainFrameProps> = ({ headerTitle, footerVisible, children }) => {
 
   return (
     <Fragment>
@@ -20,5 +20,5 @@ const RootPage: FunctionComponent<RootPageProps> = ({ headerTitle, footerVisible
   );
 }
 
-export default RootPage;
-export { RootPage };
+export default MainFrame;
+export { MainFrame };

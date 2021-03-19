@@ -1,10 +1,10 @@
-import RootPage from "../root"
+import { MainFrame } from "../../components"
 
 const NotFoundPage = (): JSX.Element => {
   return (
-    <RootPage headerTitle="Page not found" footerVisible={true}>
+    <MainFrame headerTitle="Page not found" footerVisible={true}>
       <div>Not found</div>
-    </RootPage>
+    </MainFrame>
   );
 }
 
