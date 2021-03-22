@@ -61,13 +61,13 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
-        # Variables
-        Write-Output "$(HOMEPAGE)";
-
         # Install gh-pages
         npm install --no-audit --progress=false
         npm install -D gh-pages --no-audit --progress=false;
 
+        # Debug
+        Write-Output "PUBLIC_UR: $(HOMEPAGE)";
+        
         # Add elements to JSON
         Write-Output 'Add elements to JSON';
         $script_json = Get-Content 'package.json' | Out-String | ConvertFrom-Json;
@@ -79,7 +79,7 @@ steps:
         # Edit .env file
         Write-Output 'Edit .env file';
         $script_env = Get-Content '.env' | Out-String;
-        $script_env_new = $script_env -replace '(REACT_APP_PUBLIC_URL\s*)=([^\r\n]?.*)', "`$1=$(HOMEPAGE)/";
+        $script_env_new = $script_env -replace '(REACT_APP_PUBLIC_URL\s*)=([^\r\n]?.*)', "`$1=$(HOMEPAGE)";
         $script_env_new | Out-File '.env';
         Write-Output $script_env_new;
 
