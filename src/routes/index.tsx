@@ -6,7 +6,6 @@ import { SamplePage } from '../pages/sample';
 import { SampleAlertsPage } from '../pages/sample-alerts';
 
 const AppRoutes: FunctionComponent = () => {
-  console.log("PUBLIC_URL", process.env.REACT_APP_PUBLIC_URL);
 
   return (
     <Router basename={process.env.REACT_APP_PUBLIC_URL}>

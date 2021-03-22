@@ -23,7 +23,7 @@ const SampleAlertsPage = (): JSX.Element => {
   }
 
   useEffect(() => {
-    console.log(alert);
+
   }, [alert]);
 
   return (
