@@ -5,7 +5,7 @@ import logo from '../../assets/logo.svg';
 const HomePage = (): JSX.Element => {
 
   return (
-    <MainFrame headerTitle="home" footerVisible={true}>
+    <MainFrame headerTitle="Home" footerVisible={true}>
       <img src={logo} className="App-logo" alt="logo" />
       <p>
         Edit <code>src/App.tsx</code> and save to reload.

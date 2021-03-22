@@ -8,7 +8,7 @@ import { SampleAlertsPage } from '../pages/sample-alerts';
 const AppRoutes: FunctionComponent = () => {
 
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path="/sample-alerts" exact={true} component={SampleAlertsPage} />
         <Route path="/sample" exact={true} component={SamplePage} />

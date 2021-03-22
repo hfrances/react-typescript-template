@@ -47,6 +47,7 @@ const buttonStyle: CSS.Properties = {
   textDecoration: 'none',
   display: 'inline-block',
   padding: '8px 16px',
+  cursor: 'pointer',
 }
 
 /*

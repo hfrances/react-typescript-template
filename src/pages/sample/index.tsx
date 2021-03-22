@@ -8,7 +8,7 @@ const SamplePage = (): JSX.Element => {
   }
   
   return (
-    <MainFrame headerTitle="Alert examples" footerVisible={true}>
+    <MainFrame headerTitle="Service sample" footerVisible={true}>
       <button className="button-link App-link" onClick={() => getSample()}>
         Get sample
       </button>
