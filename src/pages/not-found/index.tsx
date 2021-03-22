@@ -8,5 +8,5 @@ const NotFoundPage = (): JSX.Element => {
   );
 }
 
-export default NotFoundPage;
 export { NotFoundPage };
+export default NotFoundPage;

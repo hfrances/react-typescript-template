@@ -1,4 +1,5 @@
 import { FunctionComponent, Fragment } from 'react';
+import { AlertRectangleStored } from '../';
 import Header from './header';
 import Footer from './footer';
 
@@ -12,6 +13,7 @@ const MainFrame: FunctionComponent<MainFrameProps> = ({ headerTitle, footerVisib
   return (
     <Fragment>
       <Header title={headerTitle} />
+      <AlertRectangleStored />
       <main id="main-container" className="App-container">
         {children}
       </main>

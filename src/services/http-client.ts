@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios';
-//import {storageServices} from '.';
+import { ALERT_SEVERITY_ERROR } from '../constants';
+import store, { setAlert } from '../store';
 
 declare module 'axios' {
   interface AxiosResponse<T = any> extends Promise<T> { }
@@ -33,7 +34,9 @@ abstract class HttpClient {
   };
 
   private _handleRequest = (config: AxiosRequestConfig) => {
-    //config.headers['Authorization'] = `Bearer ${storageServices.getToken()}`;
+    if (!config.withCredentials) {
+      config.headers['Authorization'] = `Bearer ${store.getState().authority?.token?.accessToken}`;
+    }
     return config;
   };
 
@@ -41,6 +44,13 @@ abstract class HttpClient {
 
   protected _handleError = (error: AxiosError): Promise<AxiosError> => {
     console.error('http-client', 'fetch error', error, error.toJSON());
+    store.dispatch(setAlert({
+      severity:ALERT_SEVERITY_ERROR,
+      message: error.message,
+      details: error.toJSON(),
+      timeout: 5000,
+      visible: true
+    }));
     return Promise.reject(error.response)
   };
 

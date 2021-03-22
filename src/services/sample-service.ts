@@ -6,11 +6,9 @@ class SampleService extends HttpClient {
     super(UrlHelper.combineUrl(process.env.REACT_APP_API_URL as string, 'sample'));
   }
 
-  public get = async (token: string): Promise<any> => {
+  public get = async (): Promise<any> => {
     return await
-      this.instance.get<any>('',
-        { headers: { "Authorization": `Bearer ${token}` } }
-      )
+      this.instance.get<any>('')
         .then(response => {
           return response.data;
         })
@@ -23,5 +21,5 @@ class SampleService extends HttpClient {
 
 const singleton = new SampleService();
 
-export default singleton;
 export { singleton as SampleService };
+export default singleton;

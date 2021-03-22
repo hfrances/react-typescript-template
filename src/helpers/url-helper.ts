@@ -4,8 +4,7 @@ class UrlHelper {
     public combineUrl = (...values: string[]): string => {
         let rdo = '';
 
-        console.log()
-        values.forEach(value => {
+        values?.forEach(value => {
             if (rdo.length > 0 && rdo.slice(-1) !== '/') {
                 rdo += '/';
             }
