@@ -1,11 +1,11 @@
 # https://medium.com/@RupaniChirag/auto-publish-react-angular-front-end-app-to-github-pages-3ca1641bfdf6
 
 variables:
-  PUBLISHPASS: $(PUBLISHKEY)
-  #PUBLICKEY: $(PUBLICKEY)
-  #SECUREFILE: $(SECUREFILE)
-  #USER_EMAIL: $(USER_EMAIL)
-  #USER_NAME: $(USER_NAME)
+  SSH_PUBLISH_PASS: $(PUBLISHKEY)
+  SSH_PUBLIC_KEY: $(PUBLICKEY)
+  SSH_SECURE_FILE: $(SECUREFILE)
+  SSH_USER_EMAIL: $(USER_EMAIL)
+  SSH_USER_NAME: $(USER_NAME)
 
 trigger:
   - deploy
@@ -22,15 +22,15 @@ steps:
   - task: DownloadSecureFile@1
     name: mySecureFile
     inputs:
-      secureFile: "$(SECUREFILE)"
+      secureFile: "$(SSH_SECURE_FILE)"
       retryCount: "2"
 
   - task: InstallSSHKey@0
     inputs:
       knownHostsEntry: ""
-      sshPublicKey: "$(PUBLICKEY)"
-      sshPassphrase: "$(PUBLISHPASS)"
-      sshKeySecureFile: "$(SECUREFILE)"
+      sshPublicKey: "$(SSH_PUBLIC_KEY)"
+      sshPassphrase: "$(SSH_PUBLISH_PASS)"
+      sshKeySecureFile: "$(SSH_SECURE_FILE)"
 
   - script: |
       git config --global --add url."git@github.com:".insteadOf "https://github.com/"
