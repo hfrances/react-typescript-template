@@ -2,7 +2,7 @@ variables:
   PUBLISHPASS: $(PUBLISHKEY)
 
 trigger:
-  - master
+  - deploy
 
 pool:
   vmImage: "ubuntu-latest"
