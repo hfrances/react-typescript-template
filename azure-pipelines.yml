@@ -1,4 +1,5 @@
 # https://medium.com/@RupaniChirag/auto-publish-react-angular-front-end-app-to-github-pages-3ca1641bfdf6
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/install-ssh-key?view=azure-devops
 
 variables:
   SSH_PUBLISH_PASS: $(PUBLISHKEY)
