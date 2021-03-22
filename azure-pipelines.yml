@@ -11,7 +11,7 @@ variables:
   HOMEPAGE: $(public_url)
 
 trigger:
-  - deploy
+  - master
 
 pool:
   vmImage: "ubuntu-latest"
