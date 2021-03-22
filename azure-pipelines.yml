@@ -1,0 +1,84 @@
+# https://medium.com/@RupaniChirag/auto-publish-react-angular-front-end-app-to-github-pages-3ca1641bfdf6
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/install-ssh-key?view=azure-devops
+
+variables:
+  SSH_PUBLISH_PASS: $(PUBLISHKEY)
+  SSH_PUBLIC_KEY: $(PUBLICKEY)
+  SSH_SECURE_FILE: $(SECUREFILE)
+  SSH_USER_EMAIL: $(USER_EMAIL)
+  SSH_USER_NAME: $(USER_NAME)
+  SSH_KHE: $(KHE)
+  HOMEPAGE: $(public_url)
+
+trigger:
+  - deploy
+
+pool:
+  vmImage: "ubuntu-latest"
+
+steps:
+  - task: PowerShell@2
+    displayName: 'Export variable list'
+    inputs:
+      targetType: 'inline'
+      script: |
+        $var = (gci env:*).GetEnumerator() | Sort-Object Name
+        $out = ""
+        Foreach ($v in $var) {$out = $out + "`t{0,-28} = {1,-28}`n" -f $v.Name, $v.Value}
+      
+        $fileName = Join-Path $env:BUILD_ARTIFACTSTAGINGDIRECTORY "variable-list.md"
+        write-output "dump variables on $fileName"
+        set-content $fileName $out
+   
+        write-output "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Environment Variables;]$fileName"
+
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "12.x"
+    displayName: "Install Node.js"
+
+  - task: DownloadSecureFile@1
+    name: mySecureFile
+    inputs:
+      secureFile: "$(SSH_SECURE_FILE)"
+      retryCount: "2"
+
+  - task: InstallSSHKey@0
+    inputs:
+      knownHostsEntry: "$(SSH_KHE)"
+      sshPublicKey: "$(SSH_PUBLIC_KEY)"
+      sshPassphrase: "$(SSH_PUBLISH_PASS)"
+      sshKeySecureFile: "$(SSH_SECURE_FILE)"
+
+  - script: |
+      git config --global --add url."git@github.com:".insteadOf "https://github.com/"
+      git config --local user.email "$(USER_EMAIL)"
+      git config --local user.name "$(USER_NAME)"
+    displayName: "configure github"
+    
+  - task: PowerShell@2
+    displayName: "npm install and deploy"
+    inputs:
+      targetType: 'inline'
+      script: |
+        # Install gh-pages
+        npm install --no-audit --progress=false
+        npm install -D gh-pages;
+
+        # Edit add elements to JSON
+        Write-Output 'Edit add elements to JSON';
+        $script_json = Get-Content 'package.json' | Out-String | ConvertFrom-Json;
+        $script_json | add-member -Name "homepage" -value "$homepage" -MemberType NoteProperty;
+        $script_json.scripts | add-member -Name "predeploy" -value "npm run build" -MemberType NoteProperty;
+        $script_json.scripts | add-member -Name "deploy" -value "gh-pages -d build" -MemberType NoteProperty;
+        $script_json | ConvertTo-Json | Out-File 'package.json';
+
+        # Edit .env file
+        Write-Output 'Edit .env file';
+        $script_env = Get-Content '.env' | Out-String;
+        $script_env = $script_env -replace '(REACT_APP_PUBLIC_URL\s*)=([\s^$]?.*)', "`$1=$homepage";
+        $script_env | Out-File '.env';
+
+        # Build & deploy
+        Write-Output 'Build & deploy';
+        npm run deploy
