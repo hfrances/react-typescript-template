@@ -57,6 +57,9 @@ steps:
     displayName: "configure github"
     
   - script: |
+      Get-ChildItem .;
+      Write-Output $homepage;
+
       # Install gh-pages
       npm install --no-audit --progress=false
       npm install -D gh-pages;
