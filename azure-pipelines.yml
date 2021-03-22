@@ -76,10 +76,7 @@ steps:
         # Edit .env file
         Write-Output 'Edit .env file';
         $script_env = Get-Content '.env' | Out-String;
-        $script_env | select-string -pattern '(REACT_APP_PUBLIC_URL\s*)=([\s^$]?.*)';
-        $script_env -replace '(REACT_APP_PUBLIC_URL\s*)=([\s^$]?.*)', "`$1=$homepage";
-        $script_env = $script_env -replace '(REACT_APP_PUBLIC_URL\s*)=([\s^$]?.*)', "`$1=$homepage";
-        $script_env | Out-File '.env';
+        $script_env = $script_env -replace '(REACT_APP_PUBLIC_URL\s*)=([^\r\n]?.*)', "`$1=$homepage";
         Write-Output $script_env;
 
         # Build & deploy
