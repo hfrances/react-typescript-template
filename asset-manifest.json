@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "https://hfrances.github.io/react-typescript-template/static/css/main.1a42bd10.chunk.css",
-    "main.js": "https://hfrances.github.io/react-typescript-template/static/js/main.57a3a32b.chunk.js",
-    "main.js.map": "https://hfrances.github.io/react-typescript-template/static/js/main.57a3a32b.chunk.js.map",
+    "main.js": "https://hfrances.github.io/react-typescript-template/static/js/main.b3c09020.chunk.js",
+    "main.js.map": "https://hfrances.github.io/react-typescript-template/static/js/main.b3c09020.chunk.js.map",
     "runtime-main.js": "https://hfrances.github.io/react-typescript-template/static/js/runtime-main.c4f6f38e.js",
     "runtime-main.js.map": "https://hfrances.github.io/react-typescript-template/static/js/runtime-main.c4f6f38e.js.map",
     "static/js/2.ee9d9a03.chunk.js": "https://hfrances.github.io/react-typescript-template/static/js/2.ee9d9a03.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.c4f6f38e.js",
     "static/js/2.ee9d9a03.chunk.js",
     "static/css/main.1a42bd10.chunk.css",
-    "static/js/main.57a3a32b.chunk.js"
+    "static/js/main.b3c09020.chunk.js"
   ]
 }
