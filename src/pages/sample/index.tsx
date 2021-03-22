@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { SampleService } from '../../services'
 import { MainFrame } from '../../components';
 
