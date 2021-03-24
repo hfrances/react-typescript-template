@@ -24,6 +24,10 @@ html, body {
   background-color: yellowgreen;
 }
 
+.App-header-title, .App-footer-content {
+  font-size: inherit;
+}
+
 .App-container {
   display: flex;
   flex: auto;
@@ -35,7 +39,7 @@ html, body {
 
   /*overflow-y: scroll;*/
   /*-webkit-overflow-scrolling: touch;*/
-  flex: auto;
+  /*background-color: aqua;*/
 }
 
 .App-logo {
@@ -43,14 +47,19 @@ html, body {
   pointer-events: none;
 }
 
+.App-link {
+  color: #61dafb !important;
+  text-decoration: none;
+}
+
+.App-link:hover {
+  text-decoration: underline;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-link {
-  color: #61dafb !important;
 }
 
 @keyframes App-logo-spin {

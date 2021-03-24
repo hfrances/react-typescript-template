@@ -9,7 +9,7 @@ const Footer: FunctionComponent<FooterProps> = ({ visible }) => {
   return (
     (visible) ?
       <footer className="App-footer">
-        <p>{process.env.REACT_APP_VERSION}</p>
+        <p className="App-footer-component">{process.env.REACT_APP_VERSION}</p>
       </footer>
       : null
   )
