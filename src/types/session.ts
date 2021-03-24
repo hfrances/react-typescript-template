@@ -1,4 +1,4 @@
 
 export interface Session {
-    language: string | undefined
+  language: string | undefined
 }
