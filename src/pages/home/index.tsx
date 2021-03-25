@@ -5,7 +5,7 @@ import logo from '../../assets/logo.svg';
 const HomePage = (): JSX.Element => {
 
   return (
-    <MainFrame headerTitle="Home" footerVisible={true}>
+    <MainFrame headerTitle="Home" contentStyle={{ padding: '20px 0px' }} footerVisible={true}>
       <img src={logo} className="App-logo" alt="logo" />
       <p>
         Edit <code>src/App.tsx</code> and save to reload.
@@ -19,6 +19,7 @@ const HomePage = (): JSX.Element => {
         Learn React
       </a>
       <Link className="App-link" to="/sample-alerts">Alert samples</Link>
+      <Link className="App-link" to="/sample-list?count=15">List samples</Link>
       <Link className="App-link" to="/sample">Service samples</Link>
     </MainFrame>
   );

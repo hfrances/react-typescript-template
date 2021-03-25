@@ -20,8 +20,22 @@ html, body {
 }
 
 .App-header, .App-footer {
+  width: 100%;
   flex: none;
   background-color: yellowgreen;
+}
+
+.App-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5050;
+}
+
+.App-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 
 .App-header-title, .App-footer-content {
@@ -37,9 +51,8 @@ html, body {
   font-size: calc(10px + 2vmin);
   color: white;
 
-  /*overflow-y: scroll;*/
-  /*-webkit-overflow-scrolling: touch;*/
-  /*background-color: aqua;*/
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .App-logo {

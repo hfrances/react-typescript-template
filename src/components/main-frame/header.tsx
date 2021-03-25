@@ -1,16 +1,25 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useRef, useLayoutEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import CSS from 'csstype';
 
 type HeaderProps = {
   title: string;
+  onHeight?: React.Dispatch<React.SetStateAction<number | undefined>>;
 }
 
-const Header: FunctionComponent<HeaderProps> = ({ title }) => {
+const Header: FunctionComponent<HeaderProps> = ({ title, onHeight }) => {
   const history = useHistory();
+  const targetRef = useRef<HTMLHeadingElement>(null);
+
+  
+  useLayoutEffect(() => {
+    if (onHeight) {
+      onHeight(targetRef.current?.offsetHeight);
+    }
+  }, []);
 
   return (
-    <header className="App-header">
+    <header className="App-header" ref={targetRef}>
       <div style={barStyle}>
         <button style={{ ...buttonStyle, backgroundColor: 'transparent', borderWidth: '0' }} onClick={() => history.goBack()}>&#8249;</button>
         <p className="App-header-title" style={titleStyle}>{title}</p>
