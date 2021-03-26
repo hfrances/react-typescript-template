@@ -13,7 +13,7 @@ const Footer: FunctionComponent<FooterProps> = ({ visible, onHeight }) => {
     if (onHeight) {
       onHeight(targetRef.current?.offsetHeight);
     }
-  }, []);
+  }, [onHeight]);
 
   return (
     (visible) ?

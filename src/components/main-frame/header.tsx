@@ -16,7 +16,7 @@ const Header: FunctionComponent<HeaderProps> = ({ title, onHeight }) => {
     if (onHeight) {
       onHeight(targetRef.current?.offsetHeight);
     }
-  }, []);
+  }, [onHeight]);
 
   return (
     <header className="App-header" ref={targetRef}>
