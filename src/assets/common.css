@@ -53,6 +53,7 @@ html, body {
 }
 
 .App-container.scrolled {
+  display: block;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }
