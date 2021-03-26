@@ -1,14 +1,16 @@
 import React, { FunctionComponent } from 'react';
 import CSS from 'csstype';
 import { AlertSeverityTypes, ALERT_SEVERITY_ERROR, ALERT_SEVERITY_INFO, ALERT_SEVERITY_SUCCESS, ALERT_SEVERITY_WARNING } from '../../constants';
+import { CommonHelper } from '../../helpers';
 
 type AlertProps = {
   severity: AlertSeverityTypes | undefined,
   message: string | undefined,
+  style?: React.CSSProperties;
   onClose?: React.MouseEventHandler | undefined
 }
 
-const AlertRectangle: FunctionComponent<AlertProps> = ({ severity, message, onClose }) => {
+const AlertRectangle: FunctionComponent<AlertProps> = ({ severity, message, style, onClose }) => {
 
   const getStyle = (severity: AlertSeverityTypes | undefined): AlertStyles | undefined => {
     let style: AlertStyles | undefined;
@@ -33,8 +35,8 @@ const AlertRectangle: FunctionComponent<AlertProps> = ({ severity, message, onCl
   }
 
   return (
-    <div style={{ position: 'relative' }}>
-      <div style={{ ...alertStyle, ...getStyle(severity)?.layerStyle }}>
+    <div style={{ position: 'relative', marginTop: style?.marginTop }}>
+      <div style={{ ...alertStyle, ...getStyle(severity)?.layerStyle, ...CommonHelper.omit(style, 'marginTop') }}>
         <svg style={{ ...alertIconStyle, ...getStyle(severity)?.iconStyle }} focusable="false" viewBox="0 0 24 24" aria-hidden="true">
           <path d={getStyle(severity)?.iconPath} />
         </svg>
@@ -83,7 +85,7 @@ const alertStyle: CSS.Properties = {
   display: 'flex',
   padding: '6px 16px',
   borderRadius: '4px',
-  margin: '5px',
+  margin: '1px',
   height: '30px',
 }
 

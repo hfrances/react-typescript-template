@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { MainFrame } from '../../components';
 
+const DEFAULT_COUNT: number = 15;
+
 const SampleListPage = (): JSX.Element => {
   const history = useHistory();
-  const [count, setCount] = useState<number>(15);
+  const [count, setCount] = useState<number>(DEFAULT_COUNT);
 
   const generate = (count: number, element: (item: number) => JSX.Element): JSX.Element[] | undefined => {
     let elements = new Array<JSX.Element>(count);
@@ -17,13 +19,13 @@ const SampleListPage = (): JSX.Element => {
 
   useEffect(() => {
     let query = new URLSearchParams(window.location.search);
-    let count = query.get('count') as any as number ?? 15;
+    let count = query.get('count') as any as number ?? DEFAULT_COUNT;
 
     setCount(count);
   }, [history]);
 
   return (
-    <MainFrame headerTitle="List sample" contentStyle={{ display: 'block' }} footerVisible={true}>
+    <MainFrame headerTitle="List sample" contentType='scrolled' contentStyle={{ display: 'block' }} footerVisible={true}>
       <div>
         {generate(count, item =>
           <div key={item}>

@@ -1,9 +1,9 @@
 import HttpClient from './http-client';
-import { UrlHelper } from '../helpers';
+import { CommonHelper } from '../helpers';
 
 class SampleService extends HttpClient {
   public constructor() {
-    super(UrlHelper.combineUrl(process.env.REACT_APP_API_URL as string, 'sample'));
+    super(CommonHelper.combineUrl(process.env.REACT_APP_API_URL as string, 'sample'));
   }
 
   public get = async (): Promise<any> => {
