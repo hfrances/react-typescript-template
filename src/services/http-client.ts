@@ -45,7 +45,7 @@ abstract class HttpClient {
   protected _handleError = (error: AxiosError): Promise<AxiosError> => {
     console.error('http-client', 'fetch error', error, error.toJSON());
     store.dispatch(setAlert({
-      severity:ALERT_SEVERITY_ERROR,
+      severity: ALERT_SEVERITY_ERROR,
       message: error.message,
       details: error.toJSON(),
       timeout: 5000,
