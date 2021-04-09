@@ -6,6 +6,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
