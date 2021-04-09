@@ -1,16 +1,15 @@
 import React, { FunctionComponent } from 'react';
 import CSS from 'csstype';
 import { AlertSeverityTypes, ALERT_SEVERITY_ERROR, ALERT_SEVERITY_INFO, ALERT_SEVERITY_SUCCESS, ALERT_SEVERITY_WARNING } from '../../constants';
-import { CommonHelper } from '../../helpers';
 
-type AlertComponentProps = {
+type AlertProps = {
   severity: AlertSeverityTypes | undefined,
   message: string | undefined,
   style?: React.CSSProperties;
   onClose?: React.MouseEventHandler | undefined
 }
 
-const AlertComponent: FunctionComponent<AlertComponentProps> = ({ severity, message, style, onClose }) => {
+const Alert: FunctionComponent<AlertProps> = ({ severity, message, style, onClose }) => {
 
   const getStyle = (severity: AlertSeverityTypes | undefined): AlertStyles | undefined => {
     let style: AlertStyles | undefined;
@@ -35,53 +34,44 @@ const AlertComponent: FunctionComponent<AlertComponentProps> = ({ severity, mess
   }
 
   return (
-    <div style={{ position: 'relative', marginTop: style?.marginTop }}>
-      <div style={{ ...alertStyle, ...getStyle(severity)?.layerStyle, ...CommonHelper.omit(style, 'marginTop') }}>
+    <div style={{ ...alertStyle, ...getStyle(severity)?.layerStyle, ...style }}>
+      <span style={{ /*width: '100%',*/ display: 'flex', alignItems: 'inherit', justifyContent: 'inherit' }}>
         <svg style={{ ...alertIconStyle, ...getStyle(severity)?.iconStyle }} focusable="false" viewBox="0 0 24 24" aria-hidden="true">
           <path d={getStyle(severity)?.iconPath} />
         </svg>
-        <div style={{ ...alertMessageStyle }}>
-          {message}
-        </div>
-        {onClose ?
-          <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', marginRight: '-8px', paddingLeft: '16px' }}>
-            <div style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', verticalAlign: 'middle' }} onClick={onClose}>
-              <span style={{ width: '100%', display: 'flex', alignItems: 'inherit', justifyContent: 'inherit' }}>
-                <svg style={{ width: '1em' }} focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
-                </svg>
-              </span>
-            </div>
-          </div>
-          : null
-        }
+      </span>
+      <div style={{ ...alertMessageStyle }}>
+        {message}
       </div>
+      {onClose ?
+        <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', marginRight: '-8px', paddingLeft: '16px' }}>
+          <div style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', verticalAlign: 'middle' }} onClick={onClose}>
+            <span style={{ width: '100%', display: 'flex', alignItems: 'inherit', justifyContent: 'inherit' }}>
+              <svg style={{ width: '1em' }} focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+              </svg>
+            </span>
+          </div>
+        </div>
+        : null
+      }
     </div>
   );
 }
 
-export { AlertComponent };
-export default AlertComponent;
+export { Alert };
+export default Alert;
 
 
 /* Styles */
 
-interface AlertStyles {
+type AlertStyles = {
   layerStyle: CSS.Properties,
   iconStyle: CSS.Properties,
   iconPath: any
 }
 
-const floatingStyle: CSS.Properties = {
-  zIndex: 1,
-  position: "absolute",
-  padding: 0,
-  left: 0,
-  right: 0
-};
-
 const alertStyle: CSS.Properties = {
-  ...floatingStyle,
   display: 'flex',
   padding: '6px 16px',
   borderRadius: '4px',
@@ -90,15 +80,19 @@ const alertStyle: CSS.Properties = {
 }
 
 const alertIconStyle: CSS.Properties = {
-  padding: '3px',
+  width: '1em',
+  height: '1em',
+  padding: '3px 0px',
   marginRight: '12px',
   fontSize: '1.5rem',
-  fill: 'currentcolor',
+  fill: 'currentcolor', 
   opacity: '0.9'
 }
 
 const alertMessageStyle: CSS.Properties = {
-  padding: '3px'
+  width: '100%',
+  padding: '3px',
+  textAlign: 'left'
 }
 
 const standardError: AlertStyles = {
