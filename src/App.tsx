@@ -6,6 +6,8 @@ import { AuthorizationHelper } from './helpers';
 const App = (): JSX.Element => {
 
   useEffect(() => {
+    console.log("Creando componente", "App");
+    
     AuthorizationHelper.init();
   }, [])
 

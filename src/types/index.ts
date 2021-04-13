@@ -4,3 +4,4 @@ export * from './authority';
 export * from './example';
 export * from './session';
 export * from './alert';
+export * from './credentials-dto';
