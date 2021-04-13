@@ -34,7 +34,7 @@ abstract class HttpClient {
   };
 
   private _handleRequest = (config: AxiosRequestConfig) => {
-    if (!config.withCredentials) {
+    if (!config.withCredentials && !config.headers['Authorization']) {
       config.headers['Authorization'] = `Bearer ${store.getState().authority?.token?.accessToken}`;
     }
     return config;

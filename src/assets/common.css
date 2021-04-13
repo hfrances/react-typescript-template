@@ -1,101 +1,110 @@
-html, body {
-  margin: 0;
-  height: 100vh;
-  min-height: 100vh;
+html,
+body {
+    margin: 0;
+    height: 100vh;
+    min-height: 100vh;
 }
 
 #root {
-  height: inherit;
-  min-height: inherit;
+    height: inherit;
+    min-height: inherit;
 }
 
 .App {
-  text-align: center;
-  background-color: #282c34;
-  color: white;
-  height: inherit;
-  min-height: inherit;
-  display: flex;
-  flex-direction: column;
+    text-align: center;
+    background-color: #282c34;
+    color: white;
+    height: inherit;
+    min-height: inherit;
+    display: flex;
+    flex-direction: column;
 }
 
-.App-header, .App-footer {
-  width: 100%;
-  flex: none;
-  background-color: yellowgreen;
+.App-header,
+.App-footer {
+    width: 100%;
+    flex: none;
+    background-color: yellowgreen;
 }
 
 .App-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 5050;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5050;
 }
 
 .App-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
 
-.App-header-title, .App-footer-content {
-  font-size: inherit;
+.App-header-title,
+.App-footer-content {
+    font-size: inherit;
 }
 
 .App-container {
-  display: flex;
-  flex: auto;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-container.scrolled {
-  display: block;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+    display: block;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 .App-link {
-  color: #61dafb !important;
-  text-decoration: none;
+    color: #61dafb !important;
+    text-decoration: none;
 }
 
 .App-link:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 button.button-link {
-  background: none!important;
-  border: none;
-  padding: 0!important;
-  /*optional*/
-  font-family: arial, sans-serif;
-  /*input has OS specific font-family*/
-  color: #069;
-  text-decoration: underline;
-  cursor: pointer;
-  font-size: inherit;
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: inherit;
+}
+
+button.button-link:disabled {
+    text-decoration: none;
+    color: #666666 !important;
+    cursor: default;
 }

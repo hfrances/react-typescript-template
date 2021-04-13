@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import AppRoutes from './routes';
+import debug from './helpers/debug'
 import './assets/common.css';
-import { AuthorizationHelper } from './helpers';
 
 const App = (): JSX.Element => {
 
   useEffect(() => {
-    AuthorizationHelper.init();
-  }, [])
+    debug.log("Creating component", "App");
+  }, []);
 
   return (
     <div className="App">
