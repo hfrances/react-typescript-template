@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { MainFrame } from '../../components';
+import debug from '../../helpers/debug';
 
 const DEFAULT_COUNT: number = 15;
 
@@ -16,6 +17,10 @@ const SampleListPage = (): JSX.Element => {
     }
     return elements;
   }
+
+  useEffect(() => {
+    debug.log("Creating component", "SampleList");
+  }, []);
 
   useEffect(() => {
     let query = new URLSearchParams(window.location.search);

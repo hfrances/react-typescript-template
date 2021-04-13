@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ALERT_SEVERITY_ERROR, ALERT_SEVERITY_WARNING, ALERT_SEVERITY_INFO, ALERT_SEVERITY_SUCCESS, AlertSeverityTypes } from '../../constants';
 import { getStore, setAlert, setAlertHidden } from '../../store';
 import { MainFrame } from '../../components';
+import debug from '../../helpers/debug';
 
 const SampleAlertsPage = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -21,6 +22,10 @@ const SampleAlertsPage = (): JSX.Element => {
   const hideAlert = () => {
     dispatch(setAlertHidden());
   }
+
+  useEffect(() => {
+    debug.log("Creating component", "SampleAlerts");
+  }, []);
 
   useEffect(() => {
 

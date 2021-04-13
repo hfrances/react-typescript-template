@@ -1,5 +1,6 @@
 import { FunctionComponent, Fragment, useState, useEffect } from 'react';
 import CSS from 'csstype';
+import debug from '../../helpers/debug';
 import { AlertRectangle } from '../';
 import Header from './header';
 import Footer from './footer';
@@ -18,7 +19,7 @@ const MainFrame: FunctionComponent<MainFrameProps> = ({ headerTitle, contentType
   const [footerHeight, setFooterHeight] = useState<number>();
 
   useEffect(() => {
-    console.log("Creando componente", "MainFrame");
+    debug.log("Creating component", "MainFrame");
   }, []);
 
   return (

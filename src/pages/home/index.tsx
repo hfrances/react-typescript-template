@@ -1,8 +1,14 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MainFrame } from '../../components';
+import debug from '../../helpers/debug';
 import logo from '../../assets/logo.svg';
 
 const HomePage = (): JSX.Element => {
+
+  useEffect(() => {
+    debug.log("Creating component", "Home");
+  }, []);
 
   return (
     <MainFrame headerTitle="Home" contentStyle={{ padding: '20px 0px' }} footerVisible={true}>

@@ -1,7 +1,8 @@
-import { SampleService, AuthService } from '../../services'
+import { useEffect } from 'react';
+import { AuthService, SampleService } from '../../services'
 import { MainFrame } from '../../components';
 import { AuthorityToken } from '../../types';
-import { useEffect } from 'react';
+import debug from '../../helpers/debug';
 
 const SamplePage = (): JSX.Element => {
 
@@ -34,6 +35,10 @@ const SamplePage = (): JSX.Element => {
   useEffect(() => {
     console.log("Creando componente", "Samples");
   });
+  
+  useEffect(() => {
+    debug.log("Creating component", "Sample");
+  }, []);
 
   return (
     <MainFrame headerTitle="Service sample" footerVisible={true}>
