@@ -1,10 +1,14 @@
 import HttpClient from './http-client';
 import { CommonHelper } from '../helpers';
 import { CredentialsDto, AuthorityToken } from '../types';
+import https from 'https';
 
 class AuthService extends HttpClient {
   public constructor() {
-    super(CommonHelper.combineUrl(process.env.REACT_APP_API_URL_LOGIN as string, 'auth'));
+    super(CommonHelper.combineUrl(
+      (window.location.protocol === 'https:' ? process.env.REACT_APP_API_URL_LOGIN_HTTPS : process.env.REACT_APP_API_URL_LOGIN) as string,
+      'auth')
+    );
   }
 
   public get = async (): Promise<any> => {

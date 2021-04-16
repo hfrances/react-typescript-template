@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { AuthService, SampleService } from '../../services'
+import { AuthService, AuthServiceCert, SampleService } from '../../services'
 import { MainFrame } from '../../components';
 import { AuthorityToken } from '../../types';
 import debug from '../../helpers/debug';
@@ -19,6 +19,11 @@ const SamplePage = (): JSX.Element => {
     alert('Not implemented');
   }
 
+  const getCredentialsByCert = async () => {
+    await AuthServiceCert.createTokenCert()
+      .then(getCredentials);
+  }
+
   const getCredentialsByHash = async () => {
     await AuthService.createTokenHash()
       .then(getCredentials);
@@ -31,10 +36,6 @@ const SamplePage = (): JSX.Element => {
         alert(text);
       });
   }
-
-  useEffect(() => {
-    console.log("Creando componente", "Samples");
-  });
   
   useEffect(() => {
     debug.log("Creating component", "Sample");
@@ -53,6 +54,11 @@ const SamplePage = (): JSX.Element => {
           onClick={() => getCredentialsByMsal()}
         >
           msal
+        </button>
+        <button className="button-link App-link" style={{ margin: '0px 5px' }}
+          onClick={() => getCredentialsByCert()}
+        >
+          cert
         </button>
         <button className="button-link App-link" style={{ margin: '0px 5px' }}
           onClick={() => getCredentialsByHash()}
