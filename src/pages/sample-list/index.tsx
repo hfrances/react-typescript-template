@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { MainFrame } from '../../components';
+import { List, ListItemText } from '@material-ui/core'
 import debug from '../../helpers/debug';
 
 const DEFAULT_COUNT: number = 15;
@@ -30,14 +31,12 @@ const SampleListPage = (): JSX.Element => {
   }, [history]);
 
   return (
-    <MainFrame headerTitle="List sample" contentType='scrolled' footerVisibility='fixed'>
-      <div>
+    <MainFrame headerTitle="List sample" type='scrolled' footerVisibility='fixed'>
+      <List>
         {generate(count, item =>
-          <div key={item}>
-            item {item}
-          </div>
+          <ListItemText key={item} primary={`item ${item}`}/>
         )}
-      </div>
+      </List>
     </MainFrame>
   );
 };
