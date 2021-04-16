@@ -9,7 +9,7 @@ const NotFoundPage = (): JSX.Element => {
   }, []);
 
   return (
-    <MainFrame headerTitle="Page not found" footerVisible={true}>
+    <MainFrame headerTitle="Page not found">
       <div>Not found</div>
     </MainFrame>
   );

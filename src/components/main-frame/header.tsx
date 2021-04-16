@@ -19,10 +19,10 @@ const Header: FunctionComponent<HeaderProps> = ({ title, onHeight }) => {
   }, [onHeight]);
 
   return (
-    <header className="App-header" ref={targetRef}>
+    <header className="app-header" ref={targetRef}>
       <div style={barStyle}>
         <button style={{ ...buttonStyle, backgroundColor: 'transparent', borderWidth: '0' }} onClick={() => history.goBack()}>&#8249;</button>
-        <p className="App-header-title" style={titleStyle}>{title}</p>
+        <p className="app-header-title" style={titleStyle}>{title}</p>
       </div>
     </header>
   )

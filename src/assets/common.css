@@ -10,7 +10,7 @@ body {
     min-height: inherit;
 }
 
-.App {
+.app {
     text-align: center;
     background-color: #282c34;
     color: white;
@@ -20,32 +20,58 @@ body {
     flex-direction: column;
 }
 
-.App-header,
-.App-footer {
+.app-header,
+.app-footer {
     width: 100%;
     flex: none;
     background-color: yellowgreen;
 }
 
-.App-header {
+.app-header {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 5050;
 }
 
-.App-footer {
+.app-footer {
     position: fixed;
     bottom: 0;
     left: 0;
 }
 
-.App-header-title,
-.App-footer-content {
+.app-footer.static {
+    position: static;
+}
+
+.app-header-title,
+.app-footer-content {
     font-size: inherit;
 }
 
-.App-container {
+.app-container {
+    display: grid;
+    flex: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    font-size: calc(10px + 2vmin);
+    background-color: inherit;
+    color: white;
+}
+
+.app-container.scrolled {
+    display: block;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.app-container.static {
+    overflow-y: inherit;
+}
+
+.app-container-content {
     display: flex;
     flex: auto;
     flex-direction: column;
@@ -55,33 +81,27 @@ body {
     color: white;
 }
 
-.App-container.scrolled {
-    display: block;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-}
-
-.App-logo {
+.app-logo {
     height: 40vmin;
     pointer-events: none;
 }
 
-.App-link {
+.app-link {
     color: #61dafb !important;
     text-decoration: none;
 }
 
-.App-link:hover {
+.app-link:hover {
     text-decoration: underline;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
+    .app-logo {
+        animation: app-logo-spin infinite 20s linear;
     }
 }
 
-@keyframes App-logo-spin {
+@keyframes app-logo-spin {
     from {
         transform: rotate(0deg);
     }
