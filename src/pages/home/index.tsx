@@ -11,7 +11,7 @@ const HomePage = (): JSX.Element => {
   }, []);
 
   return (
-    <MainFrame headerTitle="Home" contentStyle={{ padding: '20px 0px' }} footerVisibility='fixed'>
+    <MainFrame headerTitle="Home" style={{ padding: '20px 0px' }} footerVisibility='fixed'>
       <img src={logo} className="app-logo" alt="logo" />
       <p>
         Edit <code>src/App.tsx</code> and save to reload.
