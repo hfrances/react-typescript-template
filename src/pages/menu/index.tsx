@@ -1,36 +1,42 @@
 import { useEffect } from 'react';
-import { MainFrame } from '../../components'
-import { makeStyles, Container, Grid, Drawer } from '@material-ui/core';
+import { MainFrame, NavigationBar } from '../../components'
+import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
 import debug from '../../helpers/debug';
 
-const drawerWidth = 240;
-
 const MenuPage = (): JSX.Element => {
-  const classes = useStyles();
+  const icons = [<InboxIcon />, <MailIcon />];
+
+  const generate = (count: number, element: (item: number) => JSX.Element): JSX.Element[] | undefined => {
+    let elements = new Array<JSX.Element>(count);
+
+    for (let i: number = 0; i < count; i++) {
+      elements[i] = element(i + 1);
+    }
+    return elements;
+  }
 
   useEffect(() => {
     debug.log("Creating component", "Menu");
   }, []);
 
   return (
-    <MainFrame headerTitle="Menu" 
-      containerStyle={{ display: 'contents' }} 
-      contentStyle={{ marginTop: 'inherit', marginBottom: 'inherit' }}
-    >
-      <Container style={{ width: '100%' }}>
-        <Grid container direction="row">
-          <Grid item sm={2}>
-            <div>
-              Content 1
-            </div>
-          </Grid>
-          <Grid item sm={10}>
-            <div>
-              Content 2
-            </div>
-          </Grid>
-        </Grid>
-      </Container>
+    <MainFrame headerTitle="Menu" type="contents" contentStyle={{ overflowY: 'auto' }}>
+      <NavigationBar drawerWidth={240} list={
+        <List>
+          {generate(10, item =>
+            <ListItem button key={item}>
+              <ListItemIcon>{icons[item % icons.length]}</ListItemIcon>
+              <ListItemText primary={`menu item ${item}`} />
+            </ListItem>
+          )}
+        </List>
+      }>
+        {generate(10, item =>
+          <div key={`c${item}`}>{`content ${item}`}</div>
+        )}
+      </NavigationBar>
     </MainFrame>
   );
 }
@@ -39,16 +45,3 @@ export { MenuPage };
 export default MenuPage;
 
 /* Styles */
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  drawer: {
-    //width: drawerWidth,
-    //flexShrink: 0,
-  },
-  drawerPaper: {
-    position: 'inherit',
-    width: drawerWidth,
-  }
-}));
