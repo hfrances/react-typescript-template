@@ -22,7 +22,7 @@ const MenuPage = (): JSX.Element => {
   }, []);
 
   return (
-    <MainFrame headerTitle="Menu" type="contents" contentStyle={{ overflowY: 'auto' }}>
+    <MainFrame headerTitle="Menu" type="contents">
       <NavigationBar drawerWidth={240} list={
         <List>
           {generate(10, item =>
