@@ -1,6 +1,6 @@
 {
     "name": "react-typescript-template",
-    "version": "0.1.17-material.2",
+    "version": "0.1.17-material.3",
     "private": true,
     "dependencies": {
         "@material-ui/core": "^4.11.3",
