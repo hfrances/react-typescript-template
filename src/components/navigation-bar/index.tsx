@@ -1,4 +1,4 @@
-import React, { useState, FunctionComponent } from 'react';
+import React, { useState, FunctionComponent, useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles, IconButton, Divider } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -8,21 +8,37 @@ type NavigationBarProps = {
   drawerWidth?: number;
   list?: React.ReactNode;
   fixedList?: React.ReactNode;
+  opened?: boolean;
+  onChanged?: (value: boolean) => void;
   style?: React.CSSProperties;
 }
 
-const NavigationBar: FunctionComponent<NavigationBarProps> = ({ drawerWidth, list, fixedList, style, children }) => {
+const NavigationBar: FunctionComponent<NavigationBarProps> = ({ drawerWidth, list, fixedList, opened = true, onChanged, style, children }) => {
   const classes = useStyles();
   const drawerClasses = makeStyles((theme) => ({
     width: {
       width: drawerWidth
     }
   }))();
-  const [open, setOpen] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(opened);
 
   const handleDrawerClose = () => {
-    setOpen(!open)
+    let value: boolean = !open;
+
+    setOpen(value);
+    if (onChanged) {
+      onChanged(value);
+    }
   }
+
+  useEffect(() => {
+    let value = opened;
+
+    setOpen(value);
+    if (onChanged && value !== opened) {
+      onChanged(value);
+    }
+  }, [opened]);
 
   return (
     <div className={classes.root}>
@@ -88,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
   },
   navBarFixedContent: {
-    marginBottom: '-15px', 
+    marginBottom: '-15px',
     overflowX: 'hidden'
   },
   navBarButton: {
