@@ -12,7 +12,7 @@ const MenuPage = (): JSX.Element => {
   }
 
   return (
-    <MainFrame headerTitle="menu" type='contents' footerVisibility='fixed'>
+    <MainFrame headerTitle="menu" type='contents' footerVisibility='static'>
       <SideBar drawerWidth={240} opened={false} list={
         generate(20, item => <div>{item}</div>)
       } fixedList={

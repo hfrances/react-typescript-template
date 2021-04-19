@@ -1,6 +1,6 @@
 {
     "name": "react-typescript-template",
-    "version": "0.1.18-alpha.1",
+    "version": "0.1.18-alpha.2",
     "private": true,
     "dependencies": {
         "@types/node": "^12.20.5",
