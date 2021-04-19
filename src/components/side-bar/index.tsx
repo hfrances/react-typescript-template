@@ -5,7 +5,7 @@ import { makeStyles, IconButton, Divider } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-type NavigationBarProps = {
+type SideBarProps = {
   drawerWidth?: number;
   list?: React.ReactNode;
   fixedList?: React.ReactNode;
@@ -14,7 +14,7 @@ type NavigationBarProps = {
   style?: CSS.Properties;
 }
 
-const NavigationBar: FunctionComponent<NavigationBarProps> = ({ drawerWidth, list, fixedList, opened = true, onChanged, style, children }) => {
+const SideBar: FunctionComponent<SideBarProps> = ({ drawerWidth, list, fixedList, opened = true, onChanged, style, children }) => {
   const classes = useStyles();
   const drawerClasses = makeStyles((theme) => ({
     width: {
@@ -71,8 +71,8 @@ const NavigationBar: FunctionComponent<NavigationBarProps> = ({ drawerWidth, lis
   );
 }
 
-export { NavigationBar };
-export default NavigationBar;
+export { SideBar };
+export default SideBar;
 
 
 /* Styles */

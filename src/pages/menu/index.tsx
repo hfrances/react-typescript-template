@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import CSS from 'csstype';
-import { MainFrame, NavigationBar, FooterVisibility } from '../../components'
+import { MainFrame, SideBar, FooterVisibility } from '../../components'
 import { useTheme, useMediaQuery, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -72,7 +72,7 @@ const MenuPage = (): JSX.Element => {
   return (
     <MainFrame headerTitle="Menu" type="contents" footerVisibility={frameBarStyle.visibility}>
       {opened === null ? null :
-        <NavigationBar drawerWidth={240} opened={opened} onChanged={onOpenChanged} style={{ ...frameBarStyle.style }} list={
+        <SideBar drawerWidth={240} opened={opened} onChanged={onOpenChanged} style={{ ...frameBarStyle.style }} list={
           <List>
             {generate(10, item =>
               <ListItem button key={item}>
@@ -96,7 +96,7 @@ const MenuPage = (): JSX.Element => {
           {generate(15, item =>
             <div key={`c${item}`}>{`content ${item}`}</div>
           )}
-        </NavigationBar>
+        </SideBar>
       }
     </MainFrame>
   );
