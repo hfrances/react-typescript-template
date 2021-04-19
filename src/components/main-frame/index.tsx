@@ -3,7 +3,7 @@ import CSS from 'csstype';
 import debug from '../../helpers/debug';
 import { AlertRectangle } from '../';
 import Header from './header';
-import { Footer, FooterVisibility, isFooterFixed, isFooterStatic } from './footer';
+import { Footer, FooterVisibility as FooterVisibilityType, isFooterFixed, isFooterStatic } from './footer';
 
 /** Content centered in the page */
 const MAIN_FRAME_TYPE_FLEX = "flex";
@@ -13,6 +13,7 @@ const MAIN_FRAME_TYPE_SCROLLED = "scrolled";
 const MAIN_FRAME_TYPE_CONTENTS = "contents";
 
 export type FrameType = typeof MAIN_FRAME_TYPE_FLEX | typeof MAIN_FRAME_TYPE_SCROLLED | typeof MAIN_FRAME_TYPE_CONTENTS;
+export type FooterVisibility = FooterVisibilityType;
 
 type MainFrameProps = {
   headerTitle: string,
@@ -38,6 +39,47 @@ const MainFrame: FunctionComponent<MainFrameProps> = ({ headerTitle, type = MAIN
     return rdo;
   }
 
+  const render = (footerVisibility: FooterVisibility) => {
+    let isStatic = isFooterStatic(footerVisibility);
+    let frameStyles: CSS.Properties = {
+      ['--headerHeight' as any]: `${headerHeight}px`,
+      ['--footerHeight' as any]: (isFooterFixed(footerVisibility) ? `${footerHeight}px` : undefined)
+    };
+
+    if (isStatic) {
+      return (
+        // Footer in the main-container.
+        <div id="main-container" className={`app-container ${castFrameType(type) ?? ''}`.trimEnd()} style={{
+          ...frameStyles,
+          display: 'flex', flex: 'auto', justifyContent: 'space-between'
+        }}>
+          <main id="main-container-aux" style={{
+            width: '-webkit-fill-available',
+            display: 'grid', height: 'calc(100vh - var(--headerHeight))', ...style
+          }}>
+            <div className={`app-container-content ${castFrameType(type) ?? ''}`.trimEnd()} style={contentStyle}>
+              {children}
+            </div>
+          </main>
+          <Footer visibility={footerVisibility} onHeight={setFooterHeight} />
+        </div>
+      );
+    }
+    else {
+      return (
+        // Footer after the main-container.
+        <>
+          <main id="main-container" className={`app-container ${castFrameType(type) ?? ''}`.trimEnd()} style={{ ...frameStyles, ...style }}>
+            <div className={`app-container-content ${castFrameType(type) ?? ''}`.trimEnd()} style={contentStyle}>
+              {children}
+            </div>
+          </main>
+          <Footer visibility={footerVisibility} onHeight={setFooterHeight} />
+        </>
+      );
+    }
+  }
+
   useEffect(() => {
     debug.log("Creating component", "MainFrame");
   }, []);
@@ -46,15 +88,7 @@ const MainFrame: FunctionComponent<MainFrameProps> = ({ headerTitle, type = MAIN
     <Fragment>
       <Header title={headerTitle} onHeight={setHeaderHeight} />
       <AlertRectangle style={{ marginTop: headerHeight }} />
-      <main id="main-container"
-        className={`app-container ${castFrameType(type) ?? ''} ${isFooterStatic(footerVisibility) ? 'static' : ''}`.trimEnd()}
-        style={{ marginTop: headerHeight, marginBottom: (isFooterFixed(footerVisibility) ? footerHeight : undefined), ...style }}
-      >
-        <div className={`app-container-content ${castFrameType(type) ?? ''}`.trimEnd()} style={contentStyle}>
-          {children}
-        </div>
-      </main>
-      <Footer visibility={footerVisibility} onHeight={setFooterHeight} />
+      {render(footerVisibility)}
     </Fragment>
   );
 }

@@ -1,5 +1,6 @@
 html,
 body {
+    overflow: hidden;
     margin: 0;
     height: 100vh;
     min-height: 100vh;
@@ -56,9 +57,9 @@ body {
     align-items: center;
     justify-content: center;
     overflow-y: auto;
-    font-size: calc(10px + 2vmin);
-    background-color: inherit;
-    color: white;
+    font-size: inherit;
+    margin-top: var(--headerHeight);
+    margin-bottom: var(--footerHeight);
 }
 
 .app-container.scrolled {
@@ -82,9 +83,19 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-size: calc(10px + 2vmin);
+    background-color: inherit;
+    color: white;
+}
+
+.app-container-content.scrolled {
+    display: block;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 .app-container-content.contents {
+    height: inherit;
     margin: inherit;
     overflow-y: inherit;
 }
