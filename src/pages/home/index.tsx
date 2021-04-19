@@ -11,7 +11,7 @@ const HomePage = (): JSX.Element => {
   }, []);
 
   return (
-    <MainFrame headerTitle="Home" style={{ padding: '20px 0px' }} footerVisibility='fixed'>
+    <MainFrame headerTitle="Home" style={{ padding: '0px 0px' }} footerVisibility='static'>
       <img src={logo} className="app-logo" alt="logo" />
       <p>
         Edit <code>src/App.tsx</code> and save to reload.
@@ -24,6 +24,7 @@ const HomePage = (): JSX.Element => {
       >
         Learn React
       </a>
+      <Link className="app-link" to="/menu">Menu</Link>
       <Link className="app-link" to="/sample-alerts">Alert samples</Link>
       <Link className="app-link" to="/sample-list?count=15">List samples</Link>
       <Link className="app-link" to="/sample">Service samples</Link>

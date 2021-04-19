@@ -1,0 +1,71 @@
+.side-bar-root {
+    display: flex;
+    flex: auto;
+    justify-content: space-between;
+    overflow-y: inherit;
+    height: inherit;
+    width: 100%;
+}
+
+.side-bar-paper {
+    display: flex;
+    flex-direction: column;
+    overflow-y: inherit;
+    background: #E0FFFF;
+    color: black;
+    flex-shrink: 0;
+    white-space: nowrap
+}
+
+.side-bar-paper-content {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.side-bar-fixed-paper {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.side-bar-fixed-paper-content {
+    overflow-x: hidden;
+    /*margin-bottom: -15px;*/
+}
+
+.side-bar-button-region {
+    display: flex;
+}
+
+.side-bar-button-region.button-expanded {
+    justify-content: flex-end;
+    margin-right: 4px;
+}
+
+.side-bar-button-region.button-collapsed {
+    justify-content: flex-start;
+    margin-left: 4px;
+}
+
+.side-bar-container {
+    display: grid;
+    overflow-y: auto;
+    width: inherit;
+}
+
+.side-bar-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.side-bar-drawer-close {
+    width: 57px;
+    overflow-x: hidden;
+    transition: width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+}
+
+.side-bar-drawer-open {
+    transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+}
