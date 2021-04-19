@@ -30,7 +30,7 @@ const SampleListPage = (): JSX.Element => {
   }, [history]);
 
   return (
-    <MainFrame headerTitle="List sample" type='scrolled' footerVisibility='fixed'>
+    <MainFrame headerTitle="List sample" type='scrolled' footerVisibility='static'>
       <div>
         {generate(count, item =>
           <div key={item}>
