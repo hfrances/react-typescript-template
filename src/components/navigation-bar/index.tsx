@@ -1,4 +1,5 @@
 import React, { useState, FunctionComponent, useEffect } from 'react';
+import CSS from 'csstype';
 import clsx from 'clsx';
 import { makeStyles, IconButton, Divider } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -10,7 +11,7 @@ type NavigationBarProps = {
   fixedList?: React.ReactNode;
   opened?: boolean;
   onChanged?: (value: boolean) => void;
-  style?: React.CSSProperties;
+  style?: CSS.Properties;
 }
 
 const NavigationBar: FunctionComponent<NavigationBarProps> = ({ drawerWidth, list, fixedList, opened = true, onChanged, style, children }) => {
@@ -41,7 +42,7 @@ const NavigationBar: FunctionComponent<NavigationBarProps> = ({ drawerWidth, lis
   }, [opened]);
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={ style }>
       <nav className={`${classes.navBar} ${clsx({
         [classes.drawerOpen]: open, [drawerClasses.width]: open,
         [classes.drawerClose]: !open,

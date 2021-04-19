@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { MainFrame, NavigationBar } from '../../components'
+import CSS from 'csstype';
+import { MainFrame, NavigationBar, FooterVisibility } from '../../components'
 import { useTheme, useMediaQuery, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -12,6 +13,29 @@ import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
 import debug from '../../helpers/debug';
 
+type FrameBarStyle = {
+  visibility: FooterVisibility;
+  style?: CSS.Properties
+}
+
+const getFrameBarStyle = (visibility: FooterVisibility): FrameBarStyle => {
+  let rdo: FrameBarStyle;
+
+  if (visibility === 'static') {
+    rdo = {
+      visibility: 'static',
+      style: { height: 'calc(100vh - var(--headerHeight))' }
+    }
+  }
+  else {
+    rdo = {
+      visibility: visibility,
+      style: undefined
+    }
+  }
+  return rdo;
+}
+
 const MenuPage = (): JSX.Element => {
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
@@ -20,6 +44,8 @@ const MenuPage = (): JSX.Element => {
     <CloudUploadIcon />, <PhotoIcon />, <AccountBalanceIcon />, <AccountTreeIcon />
   ];
   const [opened, setOpened] = useState<boolean | null>(null);
+
+  const frameBarStyle: FrameBarStyle = getFrameBarStyle('static');
 
   const generate = (count: number, element: (item: number) => JSX.Element): JSX.Element[] | undefined => {
     let elements = new Array<JSX.Element>(count);
@@ -39,13 +65,14 @@ const MenuPage = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
+    debug.log("isSmall:", isSmall);
     setOpened(!isSmall);
   }, [isSmall]);
 
   return (
-    <MainFrame headerTitle="Menu" type="contents">
+    <MainFrame headerTitle="Menu" type="contents" footerVisibility={frameBarStyle.visibility}>
       {opened === null ? null :
-        <NavigationBar drawerWidth={240} opened={opened} onChanged={onOpenChanged} list={
+        <NavigationBar drawerWidth={240} opened={opened} onChanged={onOpenChanged} style={{ ...frameBarStyle.style }} list={
           <List>
             {generate(10, item =>
               <ListItem button key={item}>
