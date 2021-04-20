@@ -32,20 +32,20 @@ const SampleAlertsPage = (): JSX.Element => {
   }, [alert]);
 
   return (
-    <MainFrame headerTitle="Alert samples" footerVisible={true}>
-      <button className="button-link App-link" onClick={() => showAlert(ALERT_SEVERITY_ERROR, "This is an error alert!")}>
+    <MainFrame headerTitle="Alert samples" footerVisibility='fixed'>
+      <button className="button-link app-link" onClick={() => showAlert(ALERT_SEVERITY_ERROR, "This is an error alert!")}>
         Show error alert
       </button>
-      <button className="button-link App-link" onClick={() => showAlert(ALERT_SEVERITY_WARNING, "This is a warning alert!")}>
+      <button className="button-link app-link" onClick={() => showAlert(ALERT_SEVERITY_WARNING, "This is a warning alert!")}>
         Show warning alert
       </button>
-      <button className="button-link App-link" onClick={() => showAlert(ALERT_SEVERITY_INFO, "This is an info message")}>
+      <button className="button-link app-link" onClick={() => showAlert(ALERT_SEVERITY_INFO, "This is an info message")}>
         Show info message
       </button>
-      <button className="button-link App-link" onClick={() => showAlert(ALERT_SEVERITY_SUCCESS, "This is a success message")}>
+      <button className="button-link app-link" onClick={() => showAlert(ALERT_SEVERITY_SUCCESS, "This is a success message")}>
         Show success message
       </button>
-      <button className="button-link App-link" onClick={() => hideAlert()}>
+      <button className="button-link app-link" onClick={() => hideAlert()}>
         Reset
       </button>
     </MainFrame>

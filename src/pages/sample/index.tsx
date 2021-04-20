@@ -42,7 +42,7 @@ const SamplePage = (): JSX.Element => {
   }, []);
 
   return (
-    <MainFrame headerTitle="Service sample" footerVisible={true}>
+    <MainFrame headerTitle="Service sample" footerVisibility='fixed'>
       <div>
         <span style={{ margin: '0px 5px' }}>Who-am-i</span>
         <button className="button-link App-link" style={{ margin: '0px 5px' }}
