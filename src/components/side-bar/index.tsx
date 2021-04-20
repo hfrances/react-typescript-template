@@ -83,7 +83,8 @@ const useStyles = makeStyles((theme) => ({
     flex: 'auto',
     justifyContent: 'space-between',
     overflowY: 'inherit',
-    width: '100%'
+    width: '100%',
+    height: 'inherit'
   },
   navBar: {
     display: 'flex',
