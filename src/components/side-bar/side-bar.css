@@ -4,7 +4,7 @@
     justify-content: space-between;
     overflow-y: inherit;
     height: inherit;
-    width: 100%;
+    width: 100vw;
 }
 
 .side-bar-paper {
@@ -14,7 +14,8 @@
     background: #E0FFFF;
     color: black;
     flex-shrink: 0;
-    white-space: nowrap
+    white-space: nowrap;
+    height: inherit;
 }
 
 .side-bar-paper-content {
@@ -25,6 +26,8 @@
 .side-bar-fixed-paper {
     display: flex;
     flex: auto;
+    flex-shrink: 0;
+    flex-grow: 1;
     flex-direction: column;
     justify-content: flex-end;
 }

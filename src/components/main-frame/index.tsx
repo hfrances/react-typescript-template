@@ -43,20 +43,17 @@ const MainFrame: FunctionComponent<MainFrameProps> = ({ headerTitle, type = MAIN
     let isStatic = isFooterStatic(footerVisibility);
     let frameStyles: CSS.Properties = {
       ['--headerHeight' as any]: `${headerHeight}px`,
-      ['--footerHeight' as any]: (isFooterFixed(footerVisibility) ? `${footerHeight}px` : undefined)
+      ['--footerHeight' as any]: (isFooterFixed(footerVisibility) ? `${footerHeight}px` : undefined),
+      /* Old browsers */
+      marginTop: `${headerHeight}px`,
+      marginBottom: (isFooterFixed(footerVisibility) ? `${footerHeight}px` : undefined)
     };
 
     if (isStatic) {
       return (
         // Footer in the main-container.
-        <div id="main-container" className={`app-container ${castFrameType(type) ?? ''}`.trimEnd()} style={{
-          ...frameStyles,
-          display: 'flex', flex: 'auto', justifyContent: 'space-between'
-        }}>
-          <main id="main-container-aux" style={{
-            width: '-webkit-fill-available',
-            display: 'grid', height: 'calc(100vh - var(--headerHeight))', ...style
-          }}>
+        <div id="main-container" className={`app-container ${castFrameType(type) ?? ''}`.trimEnd()} style={{ ...frameStyles }}>
+          <main className='app-container-aux' style={style}>
             <div className={`app-container-content ${castFrameType(type) ?? ''}`.trimEnd()} style={contentStyle}>
               {children}
             </div>

@@ -34,18 +34,17 @@ const SideBar: FunctionComponent<SideBarProps> = ({ drawerWidth, list, fixedList
 
   return (
     <div className='side-bar-root' style={style}>
-      <nav className={`side-bar-paper ${open ? 'side-bar-drawer-close' : 'side-bar-drawer-open'}`} style={{ width: (open? drawerWidth : undefined) }}>
+      <nav className={`side-bar-paper ${open ? 'side-bar-drawer-open' : 'side-bar-drawer-close'}`} style={{ width: (open ? drawerWidth : undefined) }}>
         <div className='side-bar-paper-content'>
           {list}
         </div>
-        <br />
         <div className='side-bar-fixed-paper'>
           <div className='side-bar-fixed-paper-content'>
             {fixedList}
           </div>
           <div className={`side-bar-button-region ${open ? 'button-expanded' : 'button-collapsed'}`}>
             <button style={{ ...buttonStyle, backgroundColor: 'transparent', borderWidth: '0' }} onClick={handleDrawerClose}>
-              {open? '<' : '>'}
+              {open ? '<' : '>'}
             </button>
           </div>
         </div>
