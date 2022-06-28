@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router';
 import { MainFrame } from "../../components"
 import debug from '../../helpers/debug';
 
 const NotFoundPage = (): JSX.Element => {
+  const { pathname } = useLocation();
 
   useEffect(() => {
     debug.log("Creating component", "Page not found");
@@ -10,7 +12,7 @@ const NotFoundPage = (): JSX.Element => {
 
   return (
     <MainFrame headerTitle="Page not found">
-      <div>Not found</div>
+      <div>Not found <code>{pathname}</code></div>
     </MainFrame>
   );
 }
