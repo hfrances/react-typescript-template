@@ -26,7 +26,7 @@ const HomePage = (): JSX.Element => {
       </a>
       <Link className="app-link" to="/menu">Menu</Link>
       <Link className="app-link" to="/sample-alerts">Alert samples</Link>
-      <Link className="app-link" to="/sample-list?count=15">List samples</Link>
+      <div>List samples | <Link className="app-link" to="/sample-list?count=15">15</Link> | <Link className="app-link" to="/sample-list?count=150">150</Link></div>
       <Link className="app-link" to="/sample">Service samples</Link>
     </MainFrame>
   );

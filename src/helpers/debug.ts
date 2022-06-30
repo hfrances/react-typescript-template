@@ -1,5 +1,5 @@
 
-export default new class Debug {
+const debug = new class Debug {
   enabled: boolean;
   filter: (values: any[]) => boolean;
 
@@ -45,3 +45,6 @@ export default new class Debug {
   }
 
 }();
+
+export { debug };
+export default debug;

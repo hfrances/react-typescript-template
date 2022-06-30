@@ -4,15 +4,17 @@ import 'react-app-polyfill/stable';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { AuthorizationHelper, setDebug } from './helpers';
+import { AuthorizationHelper, setDebug, debug } from './helpers';
 import store from './store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 
 
-setDebug();
 console.info("version", process.env.REACT_APP_VERSION);
+setDebug();
+debug.log("public_url", process.env.PUBLIC_URL);
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
