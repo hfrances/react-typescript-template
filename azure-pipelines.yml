@@ -79,6 +79,7 @@ steps:
         # Edit .env file
         Write-Output 'Edit .env file';
         $script_env = Get-Content '.env' | Out-String;
+        #$script_env_new = $script_env -replace '(PUBLIC_URL\s*)=([^\r\n]?.*)', "`$1=$(HOMEPAGE)";
         $script_env_new | Out-File '.env';
         Write-Output $script_env_new;
 
