@@ -18,7 +18,17 @@ pool:
 
 steps:
   - task: PowerShell@2
-    displayName: 'Get Version'
+    displayName: Create 'drop' folder
+    inputs:
+      targetType: 'inline'
+      script: |
+        $path = '$(Build.ArtifactStagingDirectory)/drop';
+        if (!(Test-Path $path)) {
+          New-Item -itemType Directory -Path '$(Build.ArtifactStagingDirectory)' -Name 'drop';
+        }
+
+  - task: PowerShell@2
+    displayName: 'Get project properties'
     inputs:
       targetType: 'inline'
       script: |
@@ -35,7 +45,7 @@ steps:
         $out = ""
         Foreach ($v in $var) {$out = $out + "`t{0,-28} = {1,-28}`n" -f $v.Name, $v.Value}
       
-        $fileName = Join-Path $env:BUILD_ARTIFACTSTAGINGDIRECTORY "variable-list.md"
+        $fileName = Join-Path "$env:BUILD_ARTIFACTSTAGINGDIRECTORY" "drop/variable-list.md"
         write-output "dump variables on $fileName"
         set-content $fileName $out
    
@@ -63,10 +73,10 @@ steps:
       git config --global --add url."git@github.com:".insteadOf "https://github.com/"
       git config --local user.email "$(USER_EMAIL)"
       git config --local user.name "$(USER_NAME)"
-    displayName: "configure github"
+    displayName: "Configure github"
     
   - task: PowerShell@2
-    displayName: "npm install and deploy"
+    displayName: "Build & Deploy"
     inputs:
       targetType: 'inline'
       script: |
@@ -88,8 +98,15 @@ steps:
         # Edit .env file
         Write-Output 'Edit .env file';
         $script_env = Get-Content '.env' | Out-String;
-        #$script_env_new = $script_env -replace '(PUBLIC_URL\s*)=([^\r\n]?.*)', "`$1=$(HOMEPAGE)";
+        $script_env_new = $script_env;
+        $script_env_new = $script_env_new -replace '(REACT_APP_VERSION\s*)=([^\r\n]?.*)', "`$1=$(npm_package_version)";
+        #$script_env_new = $script_env_new -replace '(PUBLIC_URL\s*)=([^\r\n]?.*)', "`$1=$(HOMEPAGE)";
         $script_env_new | Out-File '.env';
+
+        Write-Output 'Print .env file';
+        Write-Output $script_env;
+
+        Write-Output 'Print .env file new';
         Write-Output $script_env_new;
 
         # Build & deploy
