@@ -72,7 +72,7 @@ steps:
         Write-Output 'Add elements to JSON';
         $script_json = Get-Content 'package.json' | Out-String | ConvertFrom-Json;
         $script_json | add-member -Name "homepage" -value "$homepage" -MemberType NoteProperty;
-        $script_json.scripts | add-member -Name "predeploy" -value "npm run build" -MemberType NoteProperty;
+        $script_json.scripts | add-member -Name "predeploy" -value "echo $npm_package_version && echo %npm_package_version% && npm run build" -MemberType NoteProperty;
         $script_json.scripts | add-member -Name "deploy" -value "gh-pages -d build" -MemberType NoteProperty;
         $script_json | ConvertTo-Json | Out-File 'package.json';
 
